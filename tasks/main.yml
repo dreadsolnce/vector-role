@@ -8,6 +8,14 @@
   tags:
     - download-archive
 
+- name: Устанавливаем пакет top
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - "htop"
+    state: present
+    disable_gpg_check: true
+
 - name: Устанавливаем пакет rpm
   become: true
   ansible.builtin.dnf:
@@ -34,6 +42,6 @@
     src: vector.j2
     dest: /etc/vector/vector.yaml
     mode: '0644'
-  notify: Start vector service
+#  notify: Start vector service
   tags:
     - create-conf
